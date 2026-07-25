@@ -11,14 +11,14 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
   html { -webkit-text-size-adjust: 100%; }
-  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #F5F7FA; color: #2D3748; font-size: 14px; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: #F5F7FA; color: #2D3748; font-size: 15px; line-height: 1.55; }
   button { font-family: inherit; cursor: pointer; border: none; background: none; }
   input { font-family: inherit; }
 
   /* ===== 顶栏 ===== */
   header { position: sticky; top: 0; z-index: 50; background: #1E3A5F; color: #fff; padding: 10px 14px 0; box-shadow: 0 2px 10px rgba(20,40,60,.25); }
   .hrow { display: flex; align-items: center; gap: 8px; }
-  .hrow h1 { font-size: 16px; font-weight: 800; letter-spacing: .5px; }
+  .hrow h1 { font-size: 17px; font-weight: 800; letter-spacing: .5px; }
   .hrow .yr { font-size: 11px; background: rgba(255,255,255,.16); border-radius: 6px; padding: 2px 7px; font-weight: 700; }
   .sync { margin-left: auto; font-size: 10.5px; color: rgba(255,255,255,.75); }
   .hbtns { display: flex; gap: 6px; }
@@ -26,7 +26,7 @@
   .hbtns button.on { background: #F6AD55; color: #1A202C; }
   .tabs { display: flex; gap: 2px; margin-top: 9px; overflow-x: auto; scrollbar-width: none; }
   .tabs::-webkit-scrollbar { display: none; }
-  .tab { flex: 1 0 auto; text-align: center; font-size: 13px; font-weight: 700; color: rgba(255,255,255,.65); padding: 8px 10px 9px; border-radius: 8px 8px 0 0; white-space: nowrap; }
+  .tab { flex: 1 0 auto; text-align: center; font-size: 14px; font-weight: 700; color: rgba(255,255,255,.65); padding: 8px 10px 9px; border-radius: 8px 8px 0 0; white-space: nowrap; }
   .tab.on { background: #F5F7FA; color: #1E3A5F; }
 
   main { max-width: 1100px; margin: 0 auto; padding: 12px 12px 90px; }
@@ -36,11 +36,11 @@
   /* ===== 卡片通用 ===== */
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 12px; }
   .card { background: #fff; border-radius: 12px; padding: 13px 14px; box-shadow: 0 1px 5px rgba(20,40,60,.06); }
-  .card .lb { font-size: 11px; color: #8A97A8; font-weight: 700; margin-bottom: 5px; }
-  .card .vl { font-size: 20px; font-weight: 800; color: #1E3A5F; line-height: 1.15; }
-  .card .vl small { font-size: 11px; color: #8A97A8; font-weight: 600; }
-  .card .sub { font-size: 10.5px; color: #9AA7B5; margin-top: 4px; }
-  .sec-h { font-size: 13.5px; font-weight: 800; color: #1E3A5F; margin: 16px 2px 9px; display: flex; align-items: center; gap: 7px; }
+  .card .lb { font-size: 12px; color: #8A97A8; font-weight: 700; margin-bottom: 5px; }
+  .card .vl { font-size: 23px; font-weight: 800; color: #1E3A5F; line-height: 1.15; }
+  .card .vl small { font-size: 12px; color: #8A97A8; font-weight: 600; }
+  .card .sub { font-size: 11.5px; color: #9AA7B5; margin-top: 4px; }
+  .sec-h { font-size: 15px; font-weight: 800; color: #1E3A5F; margin: 16px 2px 9px; display: flex; align-items: center; gap: 7px; }
   .sec-h .dot { width: 9px; height: 9px; border-radius: 3px; display: inline-block; }
 
   /* ===== 总览 ===== */
@@ -49,35 +49,35 @@
   .donut-box { background: #fff; border-radius: 12px; padding: 16px; text-align: center; box-shadow: 0 1px 5px rgba(20,40,60,.06); }
   .donut-box svg { width: 190px; height: 190px; }
   .legend { margin-top: 10px; text-align: left; }
-  .legend .lg { display: flex; align-items: center; gap: 7px; font-size: 12px; padding: 3.5px 2px; }
+  .legend .lg { display: flex; align-items: center; gap: 7px; font-size: 13px; padding: 3.5px 2px; }
   .legend .lg .dt { width: 10px; height: 10px; border-radius: 3px; }
-  .legend .lg .pc { margin-left: auto; color: #8A97A8; font-size: 11px; }
+  .legend .lg .pc { margin-left: auto; color: #8A97A8; font-size: 12px; }
   .cat-card { background: #fff; border-radius: 12px; padding: 12px 14px; margin-bottom: 9px; box-shadow: 0 1px 5px rgba(20,40,60,.06); }
   .cat-card .top { display: flex; align-items: center; gap: 8px; }
-  .cat-card .nm { font-size: 13.5px; font-weight: 800; }
-  .cat-card .amt { margin-left: auto; font-size: 12px; color: #55606E; font-weight: 700; white-space: nowrap; }
+  .cat-card .nm { font-size: 15px; font-weight: 800; }
+  .cat-card .amt { margin-left: auto; font-size: 13px; color: #55606E; font-weight: 700; white-space: nowrap; }
   .bar { height: 8px; background: #EDF2F7; border-radius: 5px; margin-top: 9px; overflow: hidden; }
   .bar > i { display: block; height: 100%; border-radius: 5px; transition: width .4s; }
-  .cat-card .nums { display: flex; justify-content: space-between; font-size: 10.5px; color: #9AA7B5; margin-top: 5px; }
+  .cat-card .nums { display: flex; justify-content: space-between; font-size: 11.5px; color: #9AA7B5; margin-top: 5px; }
   .rate { font-weight: 800; }
   .rate.ok { color: #38A169; } .rate.warn { color: #DD6B20; } .rate.over { color: #E53E3E; }
   .reserve { background: linear-gradient(135deg, #276749, #38A169); color: #fff; border-radius: 12px; padding: 14px 16px; margin-bottom: 9px; box-shadow: 0 2px 8px rgba(30,80,50,.25); }
-  .reserve .lb { font-size: 11px; opacity: .8; font-weight: 700; }
-  .reserve .vl { font-size: 22px; font-weight: 800; margin-top: 3px; }
-  .reserve .sub { font-size: 10.5px; opacity: .75; margin-top: 4px; }
+  .reserve .lb { font-size: 12px; opacity: .8; font-weight: 700; }
+  .reserve .vl { font-size: 24px; font-weight: 800; margin-top: 3px; }
+  .reserve .sub { font-size: 11.5px; opacity: .75; margin-top: 4px; }
 
   /* ===== 表格通用（月度/季度/细项/填写） ===== */
   .tbl-wrap { background: #fff; border-radius: 12px; box-shadow: 0 1px 5px rgba(20,40,60,.06); overflow-x: auto; -webkit-overflow-scrolling: touch; }
   table.mx { border-collapse: collapse; width: 100%; min-width: 760px; }
-  table.mx th, table.mx td { border-bottom: 1px solid #EDF2F7; padding: 7px 6px; font-size: 11.5px; text-align: right; white-space: nowrap; }
+  table.mx th, table.mx td { border-bottom: 1px solid #EDF2F7; padding: 9px 8px; font-size: 13px; text-align: right; white-space: nowrap; }
   table.mx th { background: #F8FAFC; color: #55606E; font-weight: 700; position: sticky; top: 0; }
-  table.mx th:first-child, table.mx td:first-child { text-align: left; position: sticky; left: 0; background: #fff; z-index: 2; min-width: 108px; max-width: 150px; overflow: hidden; text-overflow: ellipsis; }
+  table.mx th:first-child, table.mx td:first-child { text-align: left; position: sticky; left: 0; background: #fff; z-index: 2; min-width: 128px; max-width: 170px; overflow: hidden; text-overflow: ellipsis; }
   table.mx th:first-child { background: #F8FAFC; z-index: 3; }
   table.mx tr.total td { font-weight: 800; background: #F0F4F8; color: #1E3A5F; border-top: 2px solid #D9E2EC; }
   table.mx td.zero { color: #CBD5E0; }
   table.mx td.neg { color: #E53E3E; font-weight: 700; }
   .pills { display: inline-flex; background: #E8EDF3; border-radius: 9px; padding: 3px; gap: 2px; margin: 2px 0 10px; }
-  .pills button { font-size: 12px; font-weight: 700; color: #55606E; padding: 5px 13px; border-radius: 7px; }
+  .pills button { font-size: 13px; font-weight: 700; color: #55606E; padding: 5px 13px; border-radius: 7px; }
   .pills button.on { background: #fff; color: #1E3A5F; box-shadow: 0 1px 3px rgba(20,40,60,.15); }
 
   /* 月度柱状图 */
@@ -89,18 +89,18 @@
   .cg .b1 { background: #B8C7D9; }
   .cg .b2 { background: #38A169; }
   .cg .b2.over { background: #E53E3E; }
-  .cg .ml { font-size: 10px; color: #8A97A8; font-weight: 700; }
-  .chart .cl { display: flex; gap: 14px; justify-content: center; margin-top: 8px; font-size: 10.5px; color: #8A97A8; }
+  .cg .ml { font-size: 11px; color: #8A97A8; font-weight: 700; }
+  .chart .cl { display: flex; gap: 14px; justify-content: center; margin-top: 8px; font-size: 11.5px; color: #8A97A8; }
   .chart .cl i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 4px; vertical-align: -1px; }
 
   /* 季度 */
   .qgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; }
   .qcard { background: #fff; border-radius: 12px; padding: 13px 14px; box-shadow: 0 1px 5px rgba(20,40,60,.06); }
-  .qcard h4 { font-size: 14px; color: #1E3A5F; display: flex; justify-content: space-between; align-items: baseline; }
+  .qcard h4 { font-size: 15.5px; color: #1E3A5F; display: flex; justify-content: space-between; align-items: baseline; }
   .qcard h4 .qr { font-size: 11px; font-weight: 800; }
-  .qcard .qnums { display: flex; gap: 14px; font-size: 11px; color: #8A97A8; margin: 7px 0 3px; }
-  .qcard .qnums b { color: #2D3748; font-size: 12.5px; }
-  .qrow { display: flex; align-items: center; gap: 7px; font-size: 11px; padding: 4px 0; border-top: 1px dashed #EDF2F7; }
+  .qcard .qnums { display: flex; gap: 14px; font-size: 12px; color: #8A97A8; margin: 7px 0 3px; }
+  .qcard .qnums b { color: #2D3748; font-size: 13.5px; }
+  .qrow { display: flex; align-items: center; gap: 7px; font-size: 12px; padding: 4px 0; border-top: 1px dashed #EDF2F7; }
   .qrow .nm { color: #55606E; }
   .qrow .qb { flex: 1; height: 5px; background: #EDF2F7; border-radius: 3px; overflow: hidden; }
   .qrow .qb i { display: block; height: 100%; border-radius: 3px; }
@@ -109,19 +109,19 @@
   /* 细项 */
   .it-sec { background: #fff; border-radius: 12px; margin-bottom: 10px; box-shadow: 0 1px 5px rgba(20,40,60,.06); overflow: hidden; }
   .it-head { display: flex; align-items: center; gap: 8px; padding: 12px 14px; cursor: pointer; }
-  .it-head .nm { font-size: 13.5px; font-weight: 800; }
-  .it-head .tt { margin-left: auto; font-size: 11.5px; color: #55606E; font-weight: 700; }
+  .it-head .nm { font-size: 15px; font-weight: 800; }
+  .it-head .tt { margin-left: auto; font-size: 12.5px; color: #55606E; font-weight: 700; }
   .it-head .arrow { color: #B8C7D9; font-size: 11px; transition: transform .2s; }
   .it-sec.open .it-head .arrow { transform: rotate(90deg); }
   .it-body { display: none; padding: 0 14px 12px; }
   .it-sec.open .it-body { display: block; }
   .it-row { border-top: 1px solid #F0F4F8; padding: 9px 0; }
   .it-row .r1 { display: flex; align-items: baseline; gap: 8px; }
-  .it-row .inm { font-size: 12.5px; font-weight: 700; }
-  .it-row .inote { font-size: 10px; color: #9AA7B5; }
-  .it-row .iam { margin-left: auto; font-size: 11.5px; color: #55606E; font-weight: 700; white-space: nowrap; }
+  .it-row .inm { font-size: 13.5px; font-weight: 700; }
+  .it-row .inote { font-size: 11px; color: #9AA7B5; }
+  .it-row .iam { margin-left: auto; font-size: 12.5px; color: #55606E; font-weight: 700; white-space: nowrap; }
   .it-row .mb { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2px; margin-top: 7px; }
-  .it-row .mb span { font-size: 8.5px; text-align: center; color: #8A97A8; background: #F8FAFC; border-radius: 3px; padding: 2.5px 0; }
+  .it-row .mb span { font-size: 10px; text-align: center; color: #8A97A8; background: #F8FAFC; border-radius: 4px; padding: 4px 0; }
   .it-row .mb span.has { background: #E3EDF7; color: #1E3A5F; font-weight: 700; }
   .it-row .mb span.hasA { background: #D9F2E3; color: #276749; font-weight: 700; }
 
@@ -132,12 +132,12 @@
   .cat-chips button.on { color: #fff; }
   table.gd { border-collapse: collapse; min-width: 1000px; background: #fff; }
   table.gd th, table.gd td { border: 1px solid #E2E8F0; padding: 0; }
-  table.gd th { background: #F8FAFC; font-size: 10.5px; color: #55606E; font-weight: 700; padding: 6px 4px; text-align: center; min-width: 74px; }
+  table.gd th { background: #F8FAFC; font-size: 12px; color: #55606E; font-weight: 700; padding: 6px 4px; text-align: center; min-width: 74px; }
   table.gd th.c1 { min-width: 170px; text-align: left; padding-left: 8px; position: sticky; left: 0; z-index: 3; }
   table.gd td.c1 { position: sticky; left: 0; background: #fff; z-index: 2; }
-  table.gd td input { width: 100%; border: none; outline: none; font-size: 12px; padding: 7px 5px; text-align: right; background: transparent; color: #2D3748; }
+  table.gd td input { width: 100%; border: none; outline: none; font-size: 13px; padding: 7px 5px; text-align: right; background: transparent; color: #2D3748; }
   table.gd td input:focus { background: #FFF8E7; box-shadow: inset 0 0 0 2px #F6AD55; }
-  table.gd td.tt { background: #F0F4F8; font-size: 11.5px; font-weight: 800; color: #1E3A5F; text-align: right; padding: 7px 6px; white-space: nowrap; }
+  table.gd td.tt { background: #F0F4F8; font-size: 12.5px; font-weight: 800; color: #1E3A5F; text-align: right; padding: 7px 6px; white-space: nowrap; }
   table.gd td input.iname { text-align: left; font-weight: 700; padding-left: 8px; min-width: 160px; }
   table.gd td.del { text-align: center; background: #fff; }
   table.gd td.del button { color: #CBD5E0; font-size: 13px; padding: 4px 7px; }
@@ -172,7 +172,12 @@
   .dbtn.sec { background: #EDF2F7; color: #4A5568; }
   #toast { position: fixed; left: 50%; bottom: 84px; transform: translateX(-50%); z-index: 400; background: #2D3748; color: #fff; font-size: 12.5px; font-weight: 700; padding: 10px 18px; border-radius: 22px; opacity: 0; transition: opacity .25s; pointer-events: none; max-width: 88vw; text-align: center; }
   #toast.on { opacity: 1; }
-  @media (max-width: 380px){ .tab { font-size: 12px; padding: 8px 7px 9px; } }
+  table.mx th.clk { cursor: pointer; color: #1E3A5F; }
+  table.mx th.clk:hover { background: #E3EDF7; }
+  .mo-cat { font-weight: 800; font-size: 13.5px; margin: 12px 0 3px; }
+  .mo-r { display: flex; justify-content: space-between; gap: 10px; font-size: 13px; padding: 6px 0; border-bottom: 1px dashed #EDF2F7; }
+  .mo-r .v { color: #55606E; font-weight: 700; white-space: nowrap; }
+  @media (max-width: 380px){ .tab { font-size: 12.5px; padding: 8px 7px 9px; } }
 </style>
 </head>
 <body>
@@ -217,6 +222,7 @@
       <button data-m="a">实际</button>
       <button data-m="d">差异</button>
     </div>
+    <span style="font-size:12px;color:#9AA7B5;margin-left:8px;">💡 点表头月份，可看该月细项支出</span>
     <div class="tbl-wrap"><table class="mx" id="moTable"></table></div>
     <div class="chart">
       <div class="sec-h" style="margin-top:0;">月度合计：预算 vs 实际</div>
@@ -232,7 +238,7 @@
 
   <!-- 细项 -->
   <section class="view" id="v-it">
-    <div class="hint" style="font-size:11.5px;color:#9AA7B5;margin:2px 2px 10px;" id="itHint">点击大项展开细项与逐月分布 · 绿色格=已有实际支出</div>
+    <div class="hint" style="font-size:12.5px;color:#9AA7B5;margin:2px 2px 10px;" id="itHint">点击大项展开细项与逐月分布 · 绿色格=已有实际支出</div>
     <div id="itList"></div>
   </section>
 
@@ -249,11 +255,12 @@
           <button data-m="b" class="on">填预算</button>
           <button data-m="a">填实际</button>
         </div>
-        <span style="font-size:11px;color:#9AA7B5;">单位：元 · 改完记得点底部「发布」同步给团队</span>
+        <span style="font-size:12px;color:#9AA7B5;">单位：元 · 改完记得点底部「发布」同步给团队</span>
       </div>
       <div class="tbl-wrap"><table class="gd" id="enGrid"></table></div>
       <div class="ent-foot">
         <button class="btn sec" id="enAddItem">＋ 添加细项</button>
+        <button class="btn sec" id="enAddUnplanned" style="background:#FDF0F5;color:#C2185B;">＋ 计划外支出</button>
       </div>
     </div>
   </section>
@@ -286,6 +293,15 @@
   </div>
 </div>
 
+<!-- 月度细项 -->
+<div class="modal" id="moModal">
+  <div class="box" style="max-width:430px;max-height:76vh;overflow-y:auto;">
+    <h3 id="moTitle">月度细项</h3>
+    <div id="moBody"></div>
+    <button class="dbtn sec" style="width:100%;margin-top:12px;" id="moClose">关闭</button>
+  </div>
+</div>
+
 <!-- 修改密码 -->
 <div class="modal" id="pwModal">
   <div class="box">
@@ -313,7 +329,7 @@ function toast(m){
   const t = $("toast"); t.textContent = m; t.classList.add("on");
   clearTimeout(t._tm); t._tm = setTimeout(() => t.classList.remove("on"), 2400);
 }
-const MONTHS = ["1月","2月","3月","4月","5月","6月","7月","8月","9月","10月","11月","12月"];
+const MONTHS = ["6月","7月","8月","9月","10月","11月","12月","27年1月","27年2月","27年3月","27年4月","27年5月"];
 const sum = a => a.reduce((x, y) => x + (+y || 0), 0);
 const fmtInt = n => Math.round(n).toLocaleString("zh-CN");
 function fmtW(n){ const w = n / 10000; return (Math.round(w * 100) / 100).toLocaleString("zh-CN"); }
@@ -546,7 +562,7 @@ $("btnRefresh").addEventListener("click", async () => {
 /* ==================== 渲染：总入口 ==================== */
 function renderAll(){
   if (!DB) return;
-  $("yrTag").textContent = (DB.year || 2026) + " 年度";
+  $("yrTag").textContent = DB.yearLabel || ((DB.year || 2026) + " 年度");
   renderOverview(); renderMonth(); renderQuarter(); renderItems();
   if (adminMode) renderEntry();
 }
@@ -569,7 +585,7 @@ function renderOverview(){
   const R = 78, C = 2 * Math.PI * R;
   let off = C * 0.25, segs = "";
   const total = B || 1;
-  DB.cats.forEach(c => {
+  DB.cats.filter(c => !c.unplanned).forEach(c => {
     const frac = catB(c) / total;
     segs += '<circle cx="100" cy="100" r="' + R + '" fill="none" stroke="' + c.color + '" stroke-width="24" stroke-dasharray="' + (frac * C) + ' ' + C + '" stroke-dashoffset="' + off + '"><title>' + esc(c.name) + ' ' + fmtW(catB(c)) + '万</title></circle>';
     off -= frac * C;
@@ -577,7 +593,7 @@ function renderOverview(){
   $("donut").innerHTML = segs +
     '<text x="100" y="94" text-anchor="middle" font-size="15" font-weight="800" fill="#1E3A5F">' + fmtW(B) + '万</text>' +
     '<text x="100" y="114" text-anchor="middle" font-size="10" fill="#8A97A8">支出预算</text>';
-  $("legend").innerHTML = DB.cats.map(c =>
+  $("legend").innerHTML = DB.cats.filter(c => !c.unplanned).map(c =>
     '<div class="lg"><span class="dt" style="background:' + c.color + '"></span>' + esc(c.name) +
     '<span class="pc">' + fmtW(catB(c)) + '万 · ' + Math.round(catB(c) / total * 100) + '%</span></div>'
   ).join("");
@@ -586,6 +602,12 @@ function renderOverview(){
   let h = "";
   DB.cats.forEach(c => {
     const cb = catB(c), ca = catA(c), rr = cb ? ca / cb : (ca ? 2 : 0);
+    if (c.unplanned) {
+      h += '<div class="cat-card"><div class="top"><span class="dot" style="width:9px;height:9px;border-radius:3px;background:' + c.color + ';display:inline-block;"></span>' +
+        '<span class="nm">' + esc(c.name) + '</span><span class="amt">实际 ' + fmtW(ca) + ' 万</span></div>' +
+        '<div class="nums"><span>计划外支出 · 计入总实际，不占预算额度</span></div></div>';
+      return;
+    }
     const w = Math.min(100, (cb ? ca / cb * 100 : (ca ? 100 : 0)));
     h += '<div class="cat-card"><div class="top"><span class="dot" style="width:9px;height:9px;border-radius:3px;background:' + c.color + ';display:inline-block;"></span>' +
       '<span class="nm">' + esc(c.name) + '</span><span class="amt">' + fmtW(ca) + ' / ' + fmtW(cb) + ' 万</span></div>' +
@@ -607,7 +629,7 @@ document.querySelectorAll("#moPills button").forEach(b => {
   });
 });
 function renderMonth(){
-  let h = '<thead><tr><th>大项 \\ 月份</th>' + MONTHS.map(m => '<th>' + m + '</th>').join('') + '<th>全年</th></tr></thead><tbody>';
+  let h = '<thead><tr><th>大项 \\ 月份</th>' + MONTHS.map((m, i) => '<th class="clk" data-m="' + i + '" title="点击查看该月细项">' + m + '</th>').join('') + '<th>全年</th></tr></thead><tbody>';
   DB.cats.forEach(c => {
     h += '<tr><td><span style="color:' + c.color + '">●</span> ' + esc(c.name) + '</td>';
     for (let m = 0; m < 12; m++) {
@@ -632,6 +654,9 @@ function renderMonth(){
   const TB = allB(), TA = allA();
   h += '<td>' + fmtW(moMode === "b" ? TB : (moMode === "a" ? TA : TA - TB)) + '</td></tr></tbody>';
   $("moTable").innerHTML = h;
+  document.querySelectorAll("#moTable th.clk").forEach(th => {
+    th.addEventListener("click", () => openMonth(+th.dataset.m));
+  });
 
   // 月度柱状图
   let max = 1;
@@ -647,9 +672,29 @@ function renderMonth(){
   $("moChart").innerHTML = ch;
 }
 
+/* ==================== 月度细项钻取 ==================== */
+function openMonth(m){
+  let h = "";
+  DB.cats.forEach(c => {
+    let rows = "";
+    c.items.forEach(it => {
+      const b = +it.b[m] || 0, a = +it.a[m] || 0;
+      if (!b && !a) return;
+      rows += '<div class="mo-r"><span>' + esc(it.name) + '</span><span class="v">预 ' + fmtW(b) + ' / 实 ' + fmtW(a) + ' 万</span></div>';
+    });
+    if (rows) h += '<div class="mo-cat" style="color:' + c.color + '">' + esc(c.name) + '</div>' + rows;
+  });
+  $("moTitle").textContent = MONTHS[m] + " · 细项支出";
+  $("moBody").innerHTML = (h || '<div style="color:#9AA7B5;font-size:13px;text-align:center;padding:18px;">该月暂无预算/实际支出</div>') +
+    '<div class="mo-r" style="border-top:2px solid #D9E2EC;border-bottom:none;font-weight:800;margin-top:10px;"><span>月度合计</span><span class="v">预 ' + fmtW(monthB(m)) + ' / 实 ' + fmtW(monthA(m)) + ' 万</span></div>';
+  $("moModal").classList.add("on");
+}
+$("moClose").addEventListener("click", () => $("moModal").classList.remove("on"));
+$("moModal").addEventListener("click", e => { if (e.target === $("moModal")) $("moModal").classList.remove("on"); });
+
 /* ==================== 季度 ==================== */
 function renderQuarter(){
-  const QN = ["Q1（1-3月）", "Q2（4-6月）", "Q3（7-9月）", "Q4（10-12月）"];
+  const QN = ["Q1（6-8月）", "Q2（9-11月）", "Q3（12-2月）", "Q4（3-5月）"];
   let h = "";
   for (let q = 0; q < 4; q++) {
     let qb = 0, qa = 0;
@@ -679,7 +724,8 @@ function renderItems(){
     h += '<div class="it-sec" data-cid="' + c.id + '"><div class="it-head">' +
       '<span class="dot" style="width:9px;height:9px;border-radius:3px;background:' + c.color + ';display:inline-block;"></span>' +
       '<span class="nm">' + esc(c.name) + '</span>' +
-      '<span class="tt">' + fmtW(ca) + ' / ' + fmtW(cb) + ' 万 · <span class="rate ' + rateClass(r) + '">' + rateText(cb, ca) + '</span></span>' +
+      (c.unplanned ? '<span class="tt">实际 ' + fmtW(ca) + ' 万 · 计划外</span>' :
+      '<span class="tt">' + fmtW(ca) + ' / ' + fmtW(cb) + ' 万 · <span class="rate ' + rateClass(r) + '">' + rateText(cb, ca) + '</span></span>') +
       '<span class="arrow">▶</span></div><div class="it-body">';
     c.items.forEach(it => {
       const ib = sum(it.b), ia = sum(it.a), ir = ib ? ia / ib : (ia ? 2 : 0);
@@ -785,6 +831,20 @@ $("enAddItem").addEventListener("click", () => {
   c.items.push({ id: "i" + Date.now().toString(36), name: name.trim(), note: "", b: Array(12).fill(0), a: Array(12).fill(0) });
   markDirty(); renderGrid();
   toast("已添加细项，填入金额后发布");
+});
+$("enAddUnplanned").addEventListener("click", () => {
+  let c = DB.cats.find(x => x.unplanned);
+  if (!c) {
+    c = { id: "cU" + Date.now().toString(36), name: "计划外支出", color: "#C2185B", unplanned: true, items: [] };
+    DB.cats.push(c);
+  }
+  const name = prompt("计划外支出名称（如：样品国际加急费）");
+  if (!name || !name.trim()) return;
+  c.items.push({ id: "i" + Date.now().toString(36), name: name.trim(), note: "计划外", b: Array(12).fill(0), a: Array(12).fill(0) });
+  enCatId = c.id; enMode = "a";
+  document.querySelectorAll("#enPills button").forEach(x => x.classList.toggle("on", x.dataset.m === "a"));
+  markDirty(); renderEntry();
+  toast("已加入「计划外支出」，在对应月份格子里填实际金额后发布");
 });
 $("enAddCat").addEventListener("click", () => {
   const name = prompt("新大项名称（如：物流仓储）");
