@@ -16,7 +16,7 @@
 <script type="importmap">
 { "imports": { "@supabase/supabase-js": "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.112.2/+esm" } }
 </script>
-  <script type="module" crossorigin src="./assets/index-7D2dfhFm.js"></script>
+  <script type="module" crossorigin src="./assets/index-CdUCpzwr.js"></script>
   <link rel="stylesheet" crossorigin href="./assets/index-8l_6wiAm.css">
 </head>
 <body>
@@ -120,7 +120,8 @@
   </section>
 
   <section class="view" id="v-sb">
-    <div class="card-form" id="sbFormBox">
+    <button class="dbtn pri" id="sbNewToggle" style="width:100%;margin-bottom:12px;font-size:14.5px;padding:13px;">＋ 填写新的预算提报</button>
+    <div class="card-form" id="sbFormBox" style="display:none;">
       <div class="sec-h" style="margin-top:0;">📝 预算提报 / 申请</div>
       <div class="frow">
         <label>所属月份</label>
@@ -157,17 +158,21 @@
         <input type="text" id="sbNote" placeholder="如：垫付说明、快递单号">
       </div>
       <button class="dbtn pri" id="sbSubmit" style="width:100%;margin-top:4px;">提交提报（提交人：<b id="sbWho"></b>）</button>
+      <button class="dbtn sec" id="sbCancel" style="width:100%;margin-top:8px;">收起表单</button>
+    </div>
+
+    <div id="apBlock" style="display:none;">
+      <div class="sec-h" style="margin-top:2px;">⏳ 待我审批</div>
+      <div id="apPending"></div>
     </div>
 
     <div class="sec-h">我的提报记录</div>
     <div id="sbMyList"></div>
-  </section>
 
-  <section class="view" id="v-ap">
-    <div class="sec-h" style="margin-top:0;">⏳ 待我审批</div>
-    <div id="apPending"></div>
-    <div class="sec-h">审批历史</div>
-    <div id="apHistory"></div>
+    <div id="apHistBlock" style="display:none;">
+      <div class="sec-h">审批历史</div>
+      <div id="apHistory"></div>
+    </div>
   </section>
 
   <section class="view" id="v-ad">

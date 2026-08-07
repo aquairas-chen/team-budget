@@ -595,6 +595,24 @@ function bindSubmit() {
   $("sbItem").addEventListener("change", () => {
     $("sbCatNameRow").style.display = $("sbItem").value === OTHER ? "" : "none";
   });
+  $("sbNewToggle").addEventListener("click", () => openForm(true));
+  $("sbCancel").addEventListener("click", () => closeForm());
+}
+function openForm(reset) {
+  if (reset && editingId) cancelEdit();
+  $("sbFormBox").style.display = "";
+  $("sbNewToggle").style.display = "none";
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+function closeForm() {
+  if (editingId) cancelEdit();
+  $("sbFormBox").style.display = "none";
+  $("sbNewToggle").style.display = "";
+}
+function cancelEdit() {
+  editingId = null;
+  $("sbSubmit").innerHTML = `提交提报（提交人：<b id="sbWho">${esc(S.member.name)}</b>）`;
+  $("sbTitle").value = $("sbAmount").value = $("sbBudget").value = $("sbPayDate").value = $("sbNote").value = "";
 }
 function fillFormOptions() {
   const M = monthLabels(S.meta.year);
@@ -663,6 +681,7 @@ async function onSubmit() {
       toast("✅ 已提交，等待 hanrui 审批");
     }
     $("sbTitle").value = $("sbAmount").value = $("sbBudget").value = $("sbPayDate").value = $("sbNote").value = "";
+    closeForm();
     renderSubmit();
     S.rerender();
   } catch (e) {
@@ -704,7 +723,7 @@ function renderSubmit() {
       $("sbPayDate").value = r.pay_date || "";
       $("sbNote").value = r.note || "";
       $("sbSubmit").innerHTML = "保存修改（仍为待审批）";
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      openForm(false);
     });
   });
   document.querySelectorAll("#sbMyList [data-del]").forEach((b) => {
@@ -724,10 +743,12 @@ function renderSubmit() {
 }
 function renderApprove() {
   if (!isApprover()) {
-    $("apPending").innerHTML = '<div class="empty">审批功能仅审批人和管理员可见</div>';
-    $("apHistory").innerHTML = "";
+    $("apBlock").style.display = "none";
+    $("apHistBlock").style.display = "none";
     return;
   }
+  $("apBlock").style.display = "";
+  $("apHistBlock").style.display = "";
   const M = monthLabels(S.meta.year);
   const pending = S.records.filter((r) => r.status === "pending");
   const history = S.records.filter((r) => r.status !== "pending").slice(0, 40);
@@ -1079,8 +1100,7 @@ const TABS = [
   { id: "qu", label: "季度" },
   { id: "it", label: "细项" },
   { id: "ml", label: "月报" },
-  { id: "sb", label: "📝 提报" },
-  { id: "ap", label: "✅ 审批", approver: true },
+  { id: "sb", label: "📝 提报·审批" },
   { id: "ad", label: "⚙️ 管理", admin: true },
   { id: "me", label: "我的" }
 ];
@@ -1091,7 +1111,7 @@ function renderTabs() {
   const tabs = visibleTabs();
   if (!tabs.some((t) => t.id === S.view)) S.view = "ov";
   $("tabs").innerHTML = tabs.map(
-    (t) => `<button class="tab ${t.id === S.view ? "on" : ""}" data-v="${t.id}">${t.label}${t.id === "ap" && pendingCount() ? ` (${pendingCount()})` : ""}</button>`
+    (t) => `<button class="tab ${t.id === S.view ? "on" : ""}" data-v="${t.id}">${t.label}${t.id === "sb" && isApprover() && pendingCount() ? ` (${pendingCount()})` : ""}</button>`
   ).join("");
   document.querySelectorAll("#tabs .tab").forEach((b) => {
     b.addEventListener("click", () => {
@@ -1115,9 +1135,10 @@ function renderApp() {
   else if (S.view === "qu") renderQuarter();
   else if (S.view === "it") renderItems();
   else if (S.view === "ml") renderMonthly();
-  else if (S.view === "sb") renderSubmit();
-  else if (S.view === "ap") renderApprove();
-  else if (S.view === "ad") renderAdmin();
+  else if (S.view === "sb") {
+    renderSubmit();
+    renderApprove();
+  } else if (S.view === "ad") renderAdmin();
   else if (S.view === "me") renderMe();
 }
 S.rerender = () => {
