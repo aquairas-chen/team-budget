@@ -1257,8 +1257,10 @@ async function boot() {
     show("authScr");
     return;
   }
-  await sb.rpc("link_my_member").catch(() => {
-  });
+  try {
+    await sb.rpc("link_my_member");
+  } catch (_) {
+  }
   const { data: mem } = await sb.from("members").select("*").eq("user_id", session.user.id).maybeSingle();
   if (!mem) {
     $("denyTitle").textContent = "暂无访问权限";
