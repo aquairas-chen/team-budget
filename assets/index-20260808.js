@@ -1044,6 +1044,21 @@ function findItemName(id) {
   }
   return null;
 }
+function startEdit(r) {
+  editingId = r.id;
+  editingPrevStatus = r.status;
+  $("sbMonth").value = r.month;
+  $("sbItem").value = r.item_id || OTHER;
+  $("sbCatNameRow").style.display = r.item_id ? "none" : "";
+  $("sbCatName").value = r.item_id ? "" : r.cat_name;
+  $("sbTitle").value = r.title;
+  $("sbAmount").value = r.amount ?? "";
+  $("sbBudget").value = r.budget_amount ?? "";
+  $("sbPayDate").value = r.pay_date || "";
+  $("sbNote").value = r.note || "";
+  $("sbSubmit").innerHTML = r.status === "pending" ? "保存修改（仍为待审批）" : "保存修改（重新进入审批）";
+  openForm(false);
+}
 async function onSubmit() {
   const month = +$("sbMonth").value;
   const itemVal = $("sbItem").value;
@@ -1142,7 +1157,9 @@ function renderSubmit() {
   fillFormOptions();
   $("sbWho").textContent = S.member.name;
   const my = S.records.filter(
-    (r) => r.submitter_id === S.session.user.id && r.source === "submit",
+    (r) =>
+      r.submitter_id === S.session.user.id ||
+      r.submitter_name === S.member.name,
   );
   if (!my.length) {
     $("sbMyList").innerHTML =
@@ -1165,20 +1182,7 @@ function renderSubmit() {
   document.querySelectorAll("#sbMyList [data-edit]").forEach((b) => {
     b.addEventListener("click", () => {
       const r = my.find((x) => x.id === b.dataset.edit);
-      if (!r) return;
-      editingId = r.id;
-      editingPrevStatus = r.status;
-      $("sbMonth").value = r.month;
-      $("sbItem").value = r.item_id || OTHER;
-      $("sbCatNameRow").style.display = r.item_id ? "none" : "";
-      $("sbCatName").value = r.item_id ? "" : r.cat_name;
-      $("sbTitle").value = r.title;
-      $("sbAmount").value = r.amount ?? "";
-      $("sbBudget").value = r.budget_amount ?? "";
-      $("sbPayDate").value = r.pay_date || "";
-      $("sbNote").value = r.note || "";
-      $("sbSubmit").innerHTML = r.status === "pending" ? "保存修改（仍为待审批）" : "保存修改（重新进入审批）";
-      openForm(false);
+      if (r) startEdit(r);
     });
   });
   document.querySelectorAll("#sbMyList [data-del]").forEach((b) => {
@@ -1232,11 +1236,17 @@ function renderApprove() {
     <div class="rec">
       <div class="r1">${statusChip(r.status)}<span class="rt">${esc(r.title)}</span><span class="ram">${fmtMoney(r.amount)}</span></div>
       <div class="r2">${esc(r.submitter_name)} · ${M[r.month]} · ${esc(r.cat_name)}${r.approver_name ? " · 审批人 " + esc(r.approver_name) : ""}${r.decided_at ? " · " + timeAgo(r.decided_at) : ""}${r.status === "rejected" && r.reject_reason ? ' · <span style="color:#C53030;">原因：' + esc(r.reject_reason) + "</span>" : ""}</div>
-      ${r.status === "approved" && r.source === "submit" ? `<div class="r3"><button class="dbtn pri" data-paid="${r.id}">💸 标记已打款</button></div>` : ""}
+      <div class="r3">${r.status !== "paid" ? `<button class="dbtn sec" data-redit="${r.id}">✏️ 修改并重审</button>` : ""}${r.status === "approved" && r.source === "submit" ? `<button class="dbtn pri" data-paid="${r.id}">💸 标记已打款</button>` : ""}</div>
     </div>`,
         )
         .join("")
     : '<div class="empty">暂无审批历史</div>';
+  document.querySelectorAll("#apHistory [data-redit]").forEach((b) => {
+    b.addEventListener("click", () => {
+      const r = S.records.find((x) => x.id === b.dataset.redit);
+      if (r) startEdit(r);
+    });
+  });
   document.querySelectorAll("#apPending [data-ok]").forEach((b) => {
     b.addEventListener("click", async () => {
       const r = pending.find((x) => x.id === b.dataset.ok);
