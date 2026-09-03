@@ -89,8 +89,13 @@
     </div>
   </section>
 
-  <section class="view" id="v-mo">
-    <div class="pills" id="moPills">
+  <section class="view" id="v-bd">
+    <div class="pills" id="bdPills" style="margin-bottom:12px;">
+      <button data-s="mo" class="on">📅 月度</button>
+      <button data-s="qu">📊 季度</button>
+      <button data-s="it">🧾 细项</button>
+    </div>
+    <div id="bd-mo" class="bd-sub">    <div class="pills" id="moPills">
       <button data-m="b" class="on">预算</button>
       <button data-m="a">实际</button>
       <button data-m="d">差异</button>
@@ -102,20 +107,21 @@
       <div class="inner" id="moChart"></div>
       <div class="cl"><span><i style="background:#B8C7D9"></i>预算</span><span><i style="background:#38A169"></i>实际</span><span><i style="background:#E53E3E"></i>超支月</span></div>
     </div>
-  </section>
-
-  <section class="view" id="v-qu">
-    <div class="qgrid" id="quGrid"></div>
+  </div>
+    <div id="bd-qu" class="bd-sub" style="display:none;">    <div class="qgrid" id="quGrid"></div>
     <div class="sec-h">📅 月均经常性支出（房租/人力/佣金等，按月摊付）</div>
     <div class="tbl-wrap" id="quMonthly"></div>
     <div class="sec-h">🎯 一次性 / 项目性支出时间轴（不做月度平均，色块=计划支付月）</div>
     <div class="tl-box" id="quTimeline"></div>
+  </div>
+    <div id="bd-it" class="bd-sub" style="display:none;">    <div style="font-size:12.5px;color:#9AA7B5;margin:2px 2px 10px;">点击大项展开细项与逐月分布 · 绿色格=已有实际支出（含审批通过的提报）</div>
+    <div id="itList"></div>
+  </div>
   </section>
 
-  <section class="view" id="v-it">
-    <div style="font-size:12.5px;color:#9AA7B5;margin:2px 2px 10px;">点击大项展开细项与逐月分布 · 绿色格=已有实际支出（含审批通过的提报）</div>
-    <div id="itList"></div>
-  </section>
+
+
+
 
   <section class="view" id="v-ml">
     <div class="pills" id="mlPills"></div>

@@ -1407,16 +1407,14 @@ function renderMe() {
 }
 const TABS = [
   { id: "ov", label: "总览" },
-  { id: "mo", label: "月度" },
-  { id: "qu", label: "季度" },
-  { id: "it", label: "细项" },
+  { id: "bd", label: "预算明细" },
   { id: "ml", label: "月报" },
   { id: "sb", label: "📝 提报·审批" },
   { id: "ad", label: "⚙️ 管理", admin: true },
   { id: "me", label: "我的" }
 ];
 function visibleTabs() {
-  if (S.guest) return TABS.filter((t) => ["ov", "mo", "qu", "it", "ml"].includes(t.id));
+  if (S.guest) return TABS.filter((t) => ["ov", "bd", "ml"].includes(t.id));
   return TABS.filter((t) => (!t.approver || isApprover()) && (!t.admin || isAdmin()));
 }
 function renderTabs() {
@@ -1433,6 +1431,20 @@ function renderTabs() {
   });
 }
 const pendingCount = () => S.records.filter((r) => r.status === "pending").length;
+let bdSub = "mo";
+function renderBreakdown() {
+  document.querySelectorAll("#bdPills button").forEach((b) => {
+    b.classList.toggle("on", b.dataset.s === bdSub);
+    b.onclick = () => { bdSub = b.dataset.s; renderBreakdown(); };
+  });
+  ["mo", "qu", "it"].forEach((k) => {
+    const el = $("bd-" + k);
+    if (el) el.style.display = k === bdSub ? "" : "none";
+  });
+  if (bdSub === "mo") renderMonth();
+  else if (bdSub === "qu") renderQuarter();
+  else renderItems();
+}
 function renderApp() {
   renderTabs();
   document.querySelectorAll(".view").forEach((x) => x.classList.remove("on"));
@@ -1443,9 +1455,7 @@ function renderApp() {
   badge.textContent = n > 99 ? "99+" : n;
   $("yrTag").textContent = S.meta.yearLabel || S.meta.year + " 年度";
   if (S.view === "ov") renderOverview();
-  else if (S.view === "mo") renderMonth();
-  else if (S.view === "qu") renderQuarter();
-  else if (S.view === "it") renderItems();
+  else if (S.view === "bd") renderBreakdown();
   else if (S.view === "ml") renderMonthly();
   else if (S.view === "sb") {
     renderSubmit();
