@@ -1379,6 +1379,25 @@ function bindMe() {
       toast("保存失败：" + (e.message || e));
     }
   });
+  const pwCard = $("pwCard");
+  if (pwCard && S.guest) pwCard.style.display = "none";
+  $("mePwSave").addEventListener("click", async () => {
+    const p1 = $("mePw1").value, p2 = $("mePw2").value;
+    if (!p1 || p1.length < 6) { toast("密码至少 6 位"); return; }
+    if (p1 !== p2) { toast("两次输入的密码不一致"); return; }
+    const btn = $("mePwSave");
+    btn.disabled = true;
+    try {
+      const { error } = await sb.auth.updateUser({ password: p1 });
+      if (error) throw error;
+      $("mePw1").value = $("mePw2").value = "";
+      toast("✅ 密码已更新，下次登录请使用新密码");
+    } catch (e) {
+      toast("修改失败：" + (e.message || e));
+    } finally {
+      btn.disabled = false;
+    }
+  });
   $("btnLogout").addEventListener("click", async () => {
     await sb.auth.signOut();
     location.reload();
