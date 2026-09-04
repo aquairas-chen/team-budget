@@ -684,7 +684,7 @@ const __vitePreload = function preload(baseModule, deps, importerUrl) {
 let XLSX = null;
 async function lib() {
   if (!XLSX) {
-    XLSX = await __vitePreload(() => import("https://cdn.jsdelivr.net/npm/xlsx@0.18.5/+esm"), true ? [] : void 0, import.meta.url);
+    XLSX = await __vitePreload(() => import("./xlsx-esm.js"), true ? [] : void 0, import.meta.url);
   }
   return XLSX;
 }
